@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "alignator"
+version = "0.1.0"
+description = ""
+license = "GPL-3.0-or-later"
+authors = ["Todoesverso <todoesverso@gmail.com>"]
+packages = [{ include = "alignator" }]
+
+[tool.poetry.scripts]
+alignator = "alignator.main:cli"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+typer = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^4.0.1"
+black = "^22.1.0"
+flake8-builtins = "^1.5.3"
+flake8-blind-except = "^0.2.0"
+flake8-logging-format = "^0.6.0"
+flakeheaven = "^0.11.1"
+
+[tool.black]
+line-length = 88
+target-version = ['py36']
+
+[tool.flakeheaven]
+# optionally inherit from remote config (or local if you want)
+base = "https://raw.githubusercontent.com/flakeheaven/flakeheaven/main/pyproject.toml"
+# specify any flake8 options. For example, exclude "example.py":
+exclude = ["example.py"]
+# make output nice
+format = "grouped"
+# 80 chars aren't enough in 21 century
+max_line_length = 90
+# show line of source code in output
+show_source = true
+
+# list of plugins and rules for them
+[tool.flakeheaven.plugins]
+# include everything in pyflakes except F401
+pyflakes = ["+*", "-F401"]
+# enable only codes from S100 to S199
+flake8-bandit = ["-*", "+S1??"]
+# enable everything that starts from `flake8-`
+"flake8-*" = ["+*"]
+# explicitly disable plugin
+flake8-docstrings = ["-*"]
+mccabe = ["+*"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
