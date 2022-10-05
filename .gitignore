@@ -1,3 +1,4 @@
 *.pyc
 tests/outputs/
 tests/inputs/
+dist/
